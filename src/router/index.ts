@@ -13,6 +13,11 @@ const router = createRouter({
       path: '/user-list',
       name: 'user-list',
       component: () => import('@/views/UserList.vue') //懒加载，提高首页打开速度
+    },
+    {
+      path: '/parent',
+      name: 'parent',
+      component: () => import('@/views/Parent.vue')
     }
   ]
 })
