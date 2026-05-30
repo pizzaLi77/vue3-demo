@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import Child from '@/components/Child.vue'
+import { useRoute } from 'vue-router'
+import { useUserStore} from '@/stores/user'
 
+const route = useRoute()
+const store = useUserStore()
 const showDialog = ref(false)         // 控制弹窗显示/隐藏
 const editUser = ref({ name: '', role: '' })  // 当前要编辑的用户
 
@@ -15,6 +19,12 @@ function openEdit(user: { name: string, role: string }) {
   editUser.value = user    // 把当前用户存起来
   showDialog.value = true  // 显示弹窗
 }
+
+onMounted(() => {
+  console.log(route.query.param1)
+  console.log(route.query.param2)
+  console.log(localStorage.getItem('username2'))
+})
 </script>
 
 <template>
@@ -41,7 +51,8 @@ function openEdit(user: { name: string, role: string }) {
         </tr>
       </tbody>
     </table>
-
+    <div>pinia全局管理name属性值为:{{store.name}}</div>
+    <div>pinia全局管理role属性值为:{{store.role}}</div>
     <!-- 弹窗，把当前选中的用户数据传进去 -->
     <!-- @close="showDialog = false" 收到通知关闭弹窗-->
     <Child

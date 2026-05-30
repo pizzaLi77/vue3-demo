@@ -18,6 +18,16 @@ const router = createRouter({
       path: '/parent',
       name: 'parent',
       component: () => import('@/views/Parent.vue')
+    },
+    {
+      path: '/parent1',
+      name: 'parent1',
+      component: () => import('@/views/Parent1.vue')
+    },
+    {
+      path: '/aheadPass',
+      name: 'aheadPass',
+      component: () => import('@/views/room-page.vue')
     }
   ]
 })
